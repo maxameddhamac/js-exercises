@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Color Picker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      #colorPreview {
+        width: 200px;
+        height: 200px;
+        margin: 20px 0;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      #colorHistory {
+        list-style: none;
+        padding: 0;
+      }
+
+      #colorHistory li {
+        margin: 5px 0;
+        font-family: monospace;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Interactive Color Picker</h1>
+
+    <label for="colorPicker">Choose a color:</label>
+    <input type="color" id="colorPicker" value="#ffffff" />
+
+    <div id="colorPreview">Color Preview</div>
+
+    <h2>Color History</h2>
+    <ul id="colorHistory"></ul>
+
+    <button id="clearHistoryButton">Clear History</button>
+
+    <script>
+      const colorPicker = document.querySelector("#colorPicker");
+      const colorPreview = document.querySelector("#colorPreview");
+      const colorHistory = document.querySelector("#colorHistory");
+      const clearHistoryButton = document.querySelector("#clearHistoryButton");
+
+      // Live preview updating while dragging/selecting
+      colorPicker.addEventListener("input", function () {
+        colorPreview.style.backgroundColor = colorPicker.value;
+      });
+
+      // Add to history list when a color selection is finalized
+      colorPicker.addEventListener("change", function () {
+        const selectedColor = colorPicker.value;
+        addColorToHistory(selectedColor);
+      });
+
+      // Function to append selected color to history list
+      function addColorToHistory(color) {
+        const li = document.createElement("li");
+        li.textContent = color;
+        li.style.color = color;
+        colorHistory.appendChild(li);
+      }
+
+      // Clear all items in history
+      clearHistoryButton.addEventListener("click", function () {
+        colorHistory.innerHTML = "";
+      });
+    </script>
+  </body>
+</html>
