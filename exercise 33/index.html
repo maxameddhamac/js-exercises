@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Change Content Example</title>
+  </head>
+  <body>
+    <h1 id="heading">Original Title</h1>
+    <p id="description">This is the original paragraph text.</p>
+    <div id="container">Original container content.</div>
+
+    <button onclick="changeContent()">Change Content</button>
+
+    <script>
+      function changeContent() {
+        // Modifying text content
+        document.getElementById("heading").textContent = "Updated Title!";
+        document.getElementById("description").innerText =
+          "The paragraph text has been changed.";
+
+        // Modifying HTML content inside an element
+        document.getElementById("container").innerHTML =
+          "<strong>New content:</strong> Content updated successfully!";
+      }
+    </script>
+  </body>
+</html>
